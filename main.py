@@ -18,13 +18,20 @@ class Dashboard:
 
         # the width, height and colors are temp
         displayPanel = Frame(root, background=DARKGRAY, width=300, height=100)
-        buttonPanel = Frame(root, background=BACKGROUND, width=300, height=300)
-        displayPanel.pack(side="top", fill="y")
+        buttonPanel = Frame(root, background=BACKGROUND, width=300, height=200)
+        displayPanel.pack(side="top", fill="both")
         buttonPanel.pack(side="bottom", fill="both", expand=True)
 
         # fill in the two areas
         self._create_buttons(buttonPanel)
         self._create_display(displayPanel)
+
+        # Place the window in the center of the monitor
+        root.eval('tk::PlaceWindow . center')
+
+        # Set the minsize and maxsize of the window
+        root.minsize(150, 300)
+        root.maxsize(450, 900)
 
     def _create_buttons(self, parent):
         clear_button = Button(parent, text="Clr", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
@@ -49,6 +56,19 @@ class Dashboard:
         zero_button = Button(parent, text="0", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
         equal_button = Button(parent, text="=", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
         add_button = Button(parent, text="+", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
+
+        # Set the Grid config/weights
+        Grid.rowconfigure(parent, 0, weight=1)
+        Grid.rowconfigure(parent, 1, weight=1)
+        Grid.rowconfigure(parent, 2, weight=1)
+        Grid.rowconfigure(parent, 3, weight=1)
+        Grid.rowconfigure(parent, 4, weight=1)
+        Grid.rowconfigure(parent, 5, weight=1)
+
+        Grid.columnconfigure(parent, 0, weight=1)
+        Grid.columnconfigure(parent, 1, weight=1)
+        Grid.columnconfigure(parent, 2, weight=1)
+        Grid.columnconfigure(parent, 3, weight=1)
 
         seven_button.grid(column=0, row=2, padx=5, pady=5, sticky=NSEW)
         eight_button.grid(column=1, row=2, padx=5, pady=5, sticky=NSEW)
