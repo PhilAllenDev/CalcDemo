@@ -90,7 +90,8 @@ class Dashboard:
         add_button.grid(column=3, row=5, padx=5, pady=5, sticky=NSEW)
 
     def _create_display(self, parent):
-        pass
+        output_display = Label(parent, text="test me", fg="white", bg=DARKGRAY, font=(FONT_NAME, 24, "bold"))
+        output_display.pack(padx=25, pady=5, side=RIGHT)
 
 
 if __name__ == '__main__':
