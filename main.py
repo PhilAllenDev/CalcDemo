@@ -34,7 +34,7 @@ class Dashboard:
         root.maxsize(450, 900)
 
     def _create_buttons(self, parent):
-        clear_button = Button(parent, text="Clr", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
+        clear_button = Button(parent, text="Clr", bd=4, height=5, width=5, justify=CENTER, command=lambda: self.btn_clear, font=(FONT_NAME, 18, "bold"))
         all_clear_button = Button(parent, text="AC", bd=4, height=5, width=5, justify=CENTER,
                                   font=(FONT_NAME, 18, "bold"))
         seven_button = Button(parent, text="7", bd=4, height=5, width=5, justify=CENTER, font=(FONT_NAME, 18, "bold"))
@@ -90,8 +90,21 @@ class Dashboard:
         add_button.grid(column=3, row=5, padx=5, pady=5, sticky=NSEW)
 
     def _create_display(self, parent):
-        output_display = Label(parent, text="test me", fg="white", bg=DARKGRAY, font=(FONT_NAME, 24, "bold"))
+        output_display = Label(parent, text="TESTME", fg="white", bg=DARKGRAY, font=(FONT_NAME, 24, "bold"))
         output_display.pack(padx=25, pady=5, side=RIGHT)
+
+    def btn_click(self, item):
+        global expression, output_display
+        expression = expression + str(item)
+        output_display.set(expression)
+
+    def btn_clear(self):
+        global expression, output_display
+        print(f"Expression before: {output_display}")
+        expression = ""
+        print(f"Expression after: {output_display}")
+        output_display.set("")
+
 
 
 if __name__ == '__main__':
